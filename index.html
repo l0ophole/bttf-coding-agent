@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="PiCode — an agentic coding assistant with a time-travel timeline."
+    />
+    <meta name="theme-color" content="#02060d" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#eef2f8" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>PiCode</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a flash of the wrong theme.
+      // Must stay in sync with the `picode:ui` key used by src/stores/uiStore.ts.
+      (function () {
+        var theme = 'dark';
+        try {
+          var saved = JSON.parse(localStorage.getItem('picode:ui') || 'null');
+          var pref = saved && saved.state && saved.state.theme;
+          if (pref === 'light' || pref === 'dark') theme = pref;
+          else if (window.matchMedia('(prefers-color-scheme: light)').matches) theme = 'light';
+        } catch (e) {
+          /* storage unavailable: keep the default */
+        }
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>PiCode needs JavaScript enabled to run.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

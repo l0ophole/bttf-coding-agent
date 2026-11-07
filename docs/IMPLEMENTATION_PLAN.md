@@ -34,15 +34,15 @@ a new session from an earlier point). The time-travel controls are the core idea
 └────┴──────────────────┴───────────────────────────────────────┴──────────────────────┘
 ```
 
-| Region | Approx. size | Contents |
-| --- | --- | --- |
-| Brand header | 290 × 56 | Logo mark, "PiCode", "Agentic Coding Assistant" |
-| Icon rail | 48 wide | 11 primary destinations, active item highlighted violet |
-| Sidebar | 236 wide | Sessions, Goals, Project, project nav, Settings/Help, agent status, brand hero |
-| Top bar | 52 high | "New Session", open session tabs, "+", environment select, model select, settings, feedback, window controls |
-| Main column | fluid | Goal header with 3 setting pills, message list, composer |
-| Inspector | 300 wide | Tabs, Timeline card (mini timeline, step/rewind/fork, jump search), Conversation Inspector (details, edit message, tool calls, edit history) |
-| Activity dock | 130 high | Tabs (Timeline, Files Changed, Tool Calls, Tests, Git), timeline track, "Rewind to" and "Jump to" cards |
+| Region        | Approx. size | Contents                                                                                                                                     |
+| ------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| Brand header  | 290 × 56     | Logo mark, "PiCode", "Agentic Coding Assistant"                                                                                              |
+| Icon rail     | 48 wide      | 11 primary destinations, active item highlighted violet                                                                                      |
+| Sidebar       | 236 wide     | Sessions, Goals, Project, project nav, Settings/Help, agent status, brand hero                                                               |
+| Top bar       | 52 high      | "New Session", open session tabs, "+", environment select, model select, settings, feedback, window controls                                 |
+| Main column   | fluid        | Goal header with 3 setting pills, message list, composer                                                                                     |
+| Inspector     | 300 wide     | Tabs, Timeline card (mini timeline, step/rewind/fork, jump search), Conversation Inspector (details, edit message, tool calls, edit history) |
+| Activity dock | 130 high     | Tabs (Timeline, Files Changed, Tool Calls, Tests, Git), timeline track, "Rewind to" and "Jump to" cards                                      |
 
 ### 1.3 Visual language
 
@@ -59,21 +59,21 @@ a new session from an earlier point). The time-travel controls are the core idea
 
 The mockup is static, so some behaviours are decided here:
 
-| Control | Decision |
-| --- | --- |
-| `×` on the agent card | **Stop agent**, only while the message is in progress |
-| Inspector `‹ ›` next to "Message 12 of 28" | Select previous/next message (moves the timeline playhead) |
-| Inspector `1/4 ›` | **Version navigator** for the selected message (versions come from edits) |
-| Faint `×` on inspector sub-sections | Collapse/expand the section |
-| Edit History rows | Radio group: choosing a version makes it the active one |
-| Timeline card `⏮` `⏭` | Step playhead to previous/next event |
-| Timeline card **Rewind** | Restore the session to the playhead (destructive, confirm dialog) |
-| **Fork** / **Fork from here** | New session containing everything up to the playhead |
-| "Rewind to: Start · Current" | Move the playhead to the session start / latest event |
-| "Jump to" card `‹ time ›` | Step playhead between messages; the time shows the playhead time |
-| "Jump to…" search | Combobox that searches messages and tool calls and jumps to the hit |
-| Window controls | Call a desktop bridge (Electron/Tauri) when present; otherwise show a toast |
-| Sidebar Files/Diffs/Search/Git/Terminal | Open the matching inspector tab, dock tab, or search field |
+| Control                                    | Decision                                                                    |
+| ------------------------------------------ | --------------------------------------------------------------------------- |
+| `×` on the agent card                      | **Stop agent**, only while the message is in progress                       |
+| Inspector `‹ ›` next to "Message 12 of 28" | Select previous/next message (moves the timeline playhead)                  |
+| Inspector `1/4 ›`                          | **Version navigator** for the selected message (versions come from edits)   |
+| Faint `×` on inspector sub-sections        | Collapse/expand the section                                                 |
+| Edit History rows                          | Radio group: choosing a version makes it the active one                     |
+| Timeline card `⏮` `⏭`                      | Step playhead to previous/next event                                        |
+| Timeline card **Rewind**                   | Restore the session to the playhead (destructive, confirm dialog)           |
+| **Fork** / **Fork from here**              | New session containing everything up to the playhead                        |
+| "Rewind to: Start · Current"               | Move the playhead to the session start / latest event                       |
+| "Jump to" card `‹ time ›`                  | Step playhead between messages; the time shows the playhead time            |
+| "Jump to…" search                          | Combobox that searches messages and tool calls and jumps to the hit         |
+| Window controls                            | Call a desktop bridge (Electron/Tauri) when present; otherwise show a toast |
+| Sidebar Files/Diffs/Search/Git/Terminal    | Open the matching inspector tab, dock tab, or search field                  |
 
 ---
 
@@ -85,22 +85,22 @@ single `data-theme` attribute on `<html>`.
 
 ### 2.1 Color tokens
 
-| Token | Dark | Light | Usage |
-| --- | --- | --- | --- |
-| `canvas` | `#02060d` | `#eef2f8` | App background |
-| `surface` | `#050c17` | `#f8fafd` | Panels, sidebar |
-| `surface-raised` | `#07111f` | `#ffffff` | Cards |
-| `surface-sunken` | `#030912` | `#f1f5fa` | Code blocks, inputs |
-| `surface-hover` | `#0b1a2e` | `#e8eef7` | Hover state |
-| `surface-selected` | `#0a2f5c` | `#e3eefc` | Selected list item, active tab |
-| `border` / `border-strong` | `#10243d` / `#1b3a5e` | `#d6e0ec` / `#b9c8db` | Dividers, card borders |
-| `border-accent` | `#1d5e9e` | `#7fb2ec` | Glow border on active elements |
-| `fg` / `fg-muted` / `fg-subtle` | `#dbe4f0` / `#8ea3bf` / `#6b84a6` | `#0d1a2b` / `#44566e` / `#5a6b85` | Text hierarchy |
-| `brand` | `#38d6f0` | `#0b6a85` | Headings, brand, active tab text |
-| `accent` | `#1665e0` | `#1d5fd6` | Primary buttons, focus ring |
-| `link` | `#5cb8ff` | `#1d5fd6` | Inline code paths, links |
-| `violet` | `#b48cff` (text) / `#6d4cf6` (fill) | `#6d28d9` | Agent identity, fork |
-| `success` / `warning` / `danger` | `#4ade80` / `#f5b454` / `#f46a7f` | `#157a3a` / `#a34a07` / `#c2334a` | Status |
+| Token                            | Dark                                | Light                             | Usage                            |
+| -------------------------------- | ----------------------------------- | --------------------------------- | -------------------------------- |
+| `canvas`                         | `#02060d`                           | `#eef2f8`                         | App background                   |
+| `surface`                        | `#050c17`                           | `#f8fafd`                         | Panels, sidebar                  |
+| `surface-raised`                 | `#07111f`                           | `#ffffff`                         | Cards                            |
+| `surface-sunken`                 | `#030912`                           | `#f1f5fa`                         | Code blocks, inputs              |
+| `surface-hover`                  | `#0b1a2e`                           | `#e8eef7`                         | Hover state                      |
+| `surface-selected`               | `#0a2f5c`                           | `#e3eefc`                         | Selected list item, active tab   |
+| `border` / `border-strong`       | `#10243d` / `#1b3a5e`               | `#d6e0ec` / `#b9c8db`             | Dividers, card borders           |
+| `border-accent`                  | `#1d5e9e`                           | `#7fb2ec`                         | Glow border on active elements   |
+| `fg` / `fg-muted` / `fg-subtle`  | `#dbe4f0` / `#8ea3bf` / `#6b84a6`   | `#0d1a2b` / `#44566e` / `#5a6b85` | Text hierarchy                   |
+| `brand`                          | `#38d6f0`                           | `#0b6a85`                         | Headings, brand, active tab text |
+| `accent`                         | `#1665e0`                           | `#1d5fd6`                         | Primary buttons, focus ring      |
+| `link`                           | `#5cb8ff`                           | `#1d5fd6`                         | Inline code paths, links         |
+| `violet`                         | `#b48cff` (text) / `#6d4cf6` (fill) | `#6d28d9`                         | Agent identity, fork             |
+| `success` / `warning` / `danger` | `#4ade80` / `#f5b454` / `#f46a7f`   | `#157a3a` / `#a34a07` / `#c2334a` | Status                           |
 
 Event (timeline) colors: message `#4ade80`, reasoning `#c048f0`, read `#38bdf8`,
 edit `#f0a848`, command `#10b981`, test `#2dd4bf`, error `#f2556d`, git `#6366f1`,
@@ -130,23 +130,23 @@ checked numerically for each pair and is re-checked with axe-core in a real brow
 
 ### 3.1 Primitives — `src/components/ui`
 
-| Component | Notes |
-| --- | --- |
-| `Button` | Variants: primary, secondary, outline, ghost, violet, danger. Sizes sm/md. Icon slots, loading state |
-| `IconButton` | Required `label` → `aria-label` + tooltip. Variants ghost/outline |
-| `Badge` | Tones neutral/brand/success/warning/danger/violet; soft or outline |
-| `Panel` + `PanelHeader` | Card surface with optional icon, title, actions, collapse |
-| `Tabs` | WAI-ARIA tabs: roving tabindex, arrows/Home/End. Variants: boxed, underline |
-| `Select` | Button + listbox popover; arrows, Home/End, type-ahead, Escape; pill and field variants |
-| `Menu` | Action menu (same keyboard model, `role="menu"`) |
-| `Tooltip` | Hover + focus, `Escape` to dismiss, never the only label |
-| `Dialog` / `Sheet` | Native `<dialog>` (focus trap, Escape, inert background); sheet slides from left/right |
-| `ConfirmDialog` | Used for destructive actions (rewind) |
-| `Toaster` | `aria-live` region; success/info/error tones |
-| `SegmentedControl` | Radio-group semantics (theme picker) |
-| `Disclosure` | `aria-expanded` / `aria-controls` collapsible |
-| `TextField`, `SearchField`, `TextArea` | Labelled inputs |
-| `Avatar`, `StatusDot`, `Kbd`, `Spinner`, `Skeleton`, `EmptyState`, `VisuallyHidden` | Small helpers |
+| Component                                                                           | Notes                                                                                                |
+| ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `Button`                                                                            | Variants: primary, secondary, outline, ghost, violet, danger. Sizes sm/md. Icon slots, loading state |
+| `IconButton`                                                                        | Required `label` → `aria-label` + tooltip. Variants ghost/outline                                    |
+| `Badge`                                                                             | Tones neutral/brand/success/warning/danger/violet; soft or outline                                   |
+| `Panel` + `PanelHeader`                                                             | Card surface with optional icon, title, actions, collapse                                            |
+| `Tabs`                                                                              | WAI-ARIA tabs: roving tabindex, arrows/Home/End. Variants: boxed, underline                          |
+| `Select`                                                                            | Button + listbox popover; arrows, Home/End, type-ahead, Escape; pill and field variants              |
+| `Menu`                                                                              | Action menu (same keyboard model, `role="menu"`)                                                     |
+| `Tooltip`                                                                           | Hover + focus, `Escape` to dismiss, never the only label                                             |
+| `Dialog` / `Sheet`                                                                  | Native `<dialog>` (focus trap, Escape, inert background); sheet slides from left/right               |
+| `ConfirmDialog`                                                                     | Used for destructive actions (rewind)                                                                |
+| `Toaster`                                                                           | `aria-live` region; success/info/error tones                                                         |
+| `SegmentedControl`                                                                  | Radio-group semantics (theme picker)                                                                 |
+| `Disclosure`                                                                        | `aria-expanded` / `aria-controls` collapsible                                                        |
+| `TextField`, `SearchField`, `TextArea`                                              | Labelled inputs                                                                                      |
+| `Avatar`, `StatusDot`, `Kbd`, `Spinner`, `Skeleton`, `EmptyState`, `VisuallyHidden` | Small helpers                                                                                        |
 
 ### 3.2 Brand — `src/components/brand`
 
@@ -154,14 +154,14 @@ checked numerically for each pair and is re-checked with axe-core in a real brow
 
 ### 3.3 Feature components — `src/features`
 
-| Feature | Components |
-| --- | --- |
-| `shell` | `AppShell`, `TopBar`, `SessionTabs`, `WindowControls`, `IconRail`, `MobileHeader`, `SkipLink` |
-| `sidebar` | `Sidebar`, `SidebarSection`, `SessionList`, `GoalList`, `ProjectCard`, `ProjectNav`, `AgentStatus` |
-| `session` | `GoalHeader`, `SessionSettingPills`, `EnvironmentSelect`, `ModelSelect` |
-| `conversation` | `ConversationView`, `MessageList`, `UserMessage`, `AgentMessage`, `ThoughtProcess`, `PlanChecklist`, `ToolCallRow`, `ToolCallCard`, `CodeBlock`, `RichText`, `Composer` |
-| `timeline` | `ActivityDock`, `TimelineTrack`, `FilesChangedList`, `ToolCallTable`, `TestResultsList`, `GitLog`, `RewindCard`, `JumpToCard` |
-| `inspector` | `InspectorPanel`, `TimelineCard`, `MiniTimeline`, `JumpSearch`, `ConversationInspector`, `MessageDetails`, `EditMessage`, `MessageToolCalls`, `EditHistory`, `ToolsTab`, `FilesTab`, `SettingsTab` |
+| Feature        | Components                                                                                                                                                                                         |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `shell`        | `AppShell`, `TopBar`, `SessionTabs`, `WindowControls`, `IconRail`, `MobileHeader`, `SkipLink`                                                                                                      |
+| `sidebar`      | `Sidebar`, `SidebarSection`, `SessionList`, `GoalList`, `ProjectCard`, `ProjectNav`, `AgentStatus`                                                                                                 |
+| `session`      | `GoalHeader`, `SessionSettingPills`, `EnvironmentSelect`, `ModelSelect`                                                                                                                            |
+| `conversation` | `ConversationView`, `MessageList`, `UserMessage`, `AgentMessage`, `ThoughtProcess`, `PlanChecklist`, `ToolCallRow`, `ToolCallCard`, `CodeBlock`, `RichText`, `Composer`                            |
+| `timeline`     | `ActivityDock`, `TimelineTrack`, `FilesChangedList`, `ToolCallTable`, `TestResultsList`, `GitLog`, `RewindCard`, `JumpToCard`                                                                      |
+| `inspector`    | `InspectorPanel`, `TimelineCard`, `MiniTimeline`, `JumpSearch`, `ConversationInspector`, `MessageDetails`, `EditMessage`, `MessageToolCalls`, `EditHistory`, `ToolsTab`, `FilesTab`, `SettingsTab` |
 
 Reuse examples: the same `ToolCallRow` renders inside messages and inside the inspector;
 `TimelineTrack` and `MiniTimeline` share the `buildTimeline()` model; `Select` powers the
@@ -189,13 +189,13 @@ src/
 
 ### 4.2 State ownership
 
-| Kind of state | Owner | Examples |
-| --- | --- | --- |
-| Server state | **React Query** | sessions, goals, project, messages, tool calls, files, tests, commits, models, environments |
-| Persistent UI prefs | **Zustand + persist** | theme, active inspector/dock tab, dock collapsed |
-| Workspace state | **Zustand + persist** | open tabs, active session, playhead per session, composer drafts |
-| Ephemeral UI | Zustand / local state | drawers open, toasts, popovers |
-| Derived | `useMemo` + pure functions | timeline events, selected message index, search results |
+| Kind of state       | Owner                      | Examples                                                                                    |
+| ------------------- | -------------------------- | ------------------------------------------------------------------------------------------- |
+| Server state        | **React Query**            | sessions, goals, project, messages, tool calls, files, tests, commits, models, environments |
+| Persistent UI prefs | **Zustand + persist**      | theme, active inspector/dock tab, dock collapsed                                            |
+| Workspace state     | **Zustand + persist**      | open tabs, active session, playhead per session, composer drafts                            |
+| Ephemeral UI        | Zustand / local state      | drawers open, toasts, popovers                                                              |
+| Derived             | `useMemo` + pure functions | timeline events, selected message index, search results                                     |
 
 Rules: components never fetch directly; they call hooks in `api/hooks`. Mutations use
 optimistic updates where the result is predictable (send message, settings, version
@@ -224,12 +224,12 @@ update that single value, so every view stays in sync.
 
 ## 5. Responsive strategy
 
-| Breakpoint | Layout |
-| --- | --- |
-| `xl` ≥ 1280 | Full desktop layout from the mockup |
-| `lg` 1024–1279 | Inspector becomes a right sheet (toggle in top bar); Rewind/Jump cards move into it |
-| `md` 768–1023 | Sidebar becomes a left sheet; rail stays visible |
-| `< 768` | Mobile header (menu, title, inspector); rail + sidebar in left sheet; horizontally scrolling tabs; stacked goal header; activity dock collapsible |
+| Breakpoint     | Layout                                                                                                                                            |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `xl` ≥ 1280    | Full desktop layout from the mockup                                                                                                               |
+| `lg` 1024–1279 | Inspector becomes a right sheet (toggle in top bar); Rewind/Jump cards move into it                                                               |
+| `md` 768–1023  | Sidebar becomes a left sheet; rail stays visible                                                                                                  |
+| `< 768`        | Mobile header (menu, title, inspector); rail + sidebar in left sheet; horizontally scrolling tabs; stacked goal header; activity dock collapsible |
 
 Touch targets are at least 40 × 40 px on coarse pointers; nothing scrolls horizontally
 at 320 px except the tab strip and code blocks, which are scroll containers.
@@ -269,3 +269,26 @@ at 320 px except the tab strip and code blocks, which are scroll containers.
 - Desktop dark screenshot is a close match to the mockup; light theme and 390 px mobile
   layouts are usable with no horizontal page scroll.
 - No axe violations in either theme.
+
+---
+
+## 8. As built
+
+Changes and additions made while implementing the plan:
+
+- **Brand header** sits inside the top bar's `<header>` so the page has a single banner landmark
+  (axe flagged it as content outside any landmark).
+- **`1/4` pager** became a message version pager; the Edit History radio group selects the same
+  versions. Saving an edit creates a new version instead of overwriting.
+- **Agent turn status** reads "Thinking… (2m 14s)" while running and "Worked for …" or
+  "Stopped after …" afterwards; the plan checklist shows done, in-progress and pending steps.
+- **Composer** gained slash commands (`/test`, `/commit`, `/explain`, `/fork`, `/rewind`),
+  attachments, a file-reference menu and a formatting preview.
+- **Below 1280px** the environment picker, "New Session" text button and window controls are
+  hidden to keep the session tabs usable; all remain reachable from Settings and the `+` menu.
+- **Below 640px** the goal header's setting pills move to Inspector → Settings.
+- **Primitives**: `Disclosure` shipped as `Collapsible`; there is no separate `TextArea` component
+  (the composer and editor textareas are bespoke). Floating UI renders into the open `<dialog>`
+  when inside one, so popovers keep working in sheets.
+- **Tooling**: TypeScript 6.0 (typescript-eslint supports `<6.1`) and ESLint 10 with
+  `eslint-plugin-jsx-a11y-x`, because ESLint 9 is end-of-life.
